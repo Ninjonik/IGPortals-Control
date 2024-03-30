@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nivo/line": "^0.85.1",
     "@tailwindcss/typography": "^0.5.12",
     "next": "14.1.4",
     "react": "^18",
