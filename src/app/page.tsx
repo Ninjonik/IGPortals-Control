@@ -1,8 +1,7 @@
 import Image from "next/image";
-import {ResponsiveLine} from "@nivo/line";
-import { headers } from 'next/headers'
 import {CurrentTime} from "@/app/components/CurrentTime";
 import {TemperatureGraph} from "@/app/components/TemperatureGraph";
+import SystemStats from "@/app/components/SystemStats";
 
 interface Params {
     [key: string]: string;
@@ -188,7 +187,8 @@ export default async function Home() {
                             const dayOfWeek = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][forecastDate.getDay()];
 
                             return (
-                                <div className="row-span-1 col-span-1 bg-base-100 rounded-lg flex flex-col justify-center items-center text-center p-2">
+                                <div key={index}
+                                    className="row-span-1 col-span-1 bg-base-100 rounded-lg flex flex-col justify-center items-center text-center p-2">
                                     <span>{dayOfWeek}</span>
                                     <Image alt={day.day.condition.text}
                                            src={"https:" + day.day.condition.icon}
@@ -206,14 +206,14 @@ export default async function Home() {
                         className='row-span-1 col-span-2 bg-base-100 rounded-lg flex flex-col justify-center items-center text-center p-4'>
                         <span>{city}</span>
                         <span>{nameDay}</span>
-                        <CurrentTime />
+                        <CurrentTime/>
                     </div>
                     <div
                         className='row-span-1 col-span-1 bg-base-100 rounded-lg flex justify-center items-center text-center p-2'>
                         {weather && (
                             <div className="flex flex-col justify-between h-full items-center">
                                 <Image alt={weather.current.condition.text}
-                                       src={"https:" + weather.current.condition.icon} height={70} width={70}/>
+                                       src={"https:" + weather.current.condition.icon} height={30} width={30}/>
                                 <span>{weather.current.condition.text} {weather.current.temp_c} °C</span>
                             </div>
                         )}
@@ -222,7 +222,8 @@ export default async function Home() {
                         className='row-span-1 col-span-1 bg-base-100 rounded-lg flex justify-center items-center text-center p-2'>
                         {weather && (
                             <div className="flex flex-col justify-between h-full items-center">
-                                <svg fill="#000000" height="70px" width="70px" version="1.1" id="wind-arrow" style={{ transform: `rotate(${weather.current.wind_degree}deg)` }}
+                                <svg className="fill-primary" height="70px" width="70px" version="1.1" id="wind-arrow"
+                                     style={{transform: `rotate(${weather.current.wind_degree}deg)`}}
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.492 476.492">
                                     <polygon
                                         points="374.785,136.54 238.246,0 101.707,136.54 223.246,136.54 223.246,476.492 253.246,476.492 253.246,136.54 "/>
@@ -235,9 +236,9 @@ export default async function Home() {
                 <div
                     className='row-span-1 col-span-2 bg-base-100 rounded-lg flex flex-col gap-2 justify-center items-center text-center p-4'>
                     <h2>Temperature Today</h2>
-                    <TemperatureGraph forecastData={forecastData} />
-
+                    <TemperatureGraph forecastData={forecastData}/>
                 </div>
+                <SystemStats />
             </div>
         </main>
     );
