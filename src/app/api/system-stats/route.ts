@@ -1,6 +1,5 @@
 import {NextApiRequest} from "next";
 import {cpu, mem, netstat, os} from "node-os-utils";
-import SystemStatsInterface from "@/app/interfaces/SystemStatsInterface";
 
 const fetchData = async () => {
 
