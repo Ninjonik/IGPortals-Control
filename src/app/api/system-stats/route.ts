@@ -19,7 +19,7 @@ const fetchData = async () => {
     };
 }
 
-export async function GET(req: NextApiRequest, res: Response) {
+export async function GET(req: Request, res: Response) {
     try {
         const data = await fetchData();
 
